@@ -5,7 +5,7 @@ models:
       - name: pk_data
         description: Chave primária da dimensão de datas, gerada por ordenação sequencial.
         data_tests:
-          - unique 
+          - unique
           - not_null
       - name: data_completa
         description: Data no formato 'yyyy-mm-dd'.
