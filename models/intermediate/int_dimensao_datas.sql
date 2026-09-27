@@ -12,14 +12,14 @@ with
     , criar_colunas as (
         select
             row_number() over(order by date_day asc) as pk_data
+            , cast(date_day as date) as data_completa
             , extract(year from date_day) as ano
             , extract(month from date_day) as mes
             , extract(day from date_day) as dia
             , extract(quarter from date_day) as trimestre
-            , to_char(date_day, 'yyyy-mm-dd') as data_completa
-            , extract(dow from date_day) as dia_da_semana
+            , dayofweek(date_day) as dia_da_semana
             , case 
-                when extract(dow from date_day) in (0, 6) then true
+                when dayofweek(date_day) in (1, 7) then true
                 else false
             end as is_weekend
         from intervalo_de_datas
